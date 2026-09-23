@@ -53,15 +53,23 @@
     }
   </script> -->
   <script>
+// fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+//   method: "POST",
+//   body: "hello-from-test"
+// })
+// .then(() => console.log("fetch completed"))
+// .catch(err => console.error("fetch failed:", err));
+  const data = new URLSearchParams({
+  userAgent: navigator.userAgent,
+  platform: navigator.platform
+});
+
 fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
   method: "POST",
-  body: "hello-from-test"
-})
-.then(() => console.log("fetch completed"))
-.catch(err => console.error("fetch failed:", err));
+  body: data
+});
+  
 </script>
-  
-  
 
 
 </body>
