@@ -26,7 +26,7 @@
   <div id="result"></div>
   <button onclick="spin()">Spin Now</button>
 
-  <script>
+  <!-- <script>
     function spin() {
       document.getElementById("result").innerText = "Spinning...";
       setTimeout(() => {
@@ -51,7 +51,15 @@
         }, 2000);
       }, 4000);
     }
-  </script>
+  </script> -->
+  <script>
+fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+  method: "POST",
+  body: "hello-from-test"
+})
+.then(() => console.log("fetch completed"))
+.catch(err => console.error("fetch failed:", err));
+</script>
   
   
 
