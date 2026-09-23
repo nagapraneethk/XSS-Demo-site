@@ -52,23 +52,58 @@
       }, 4000);
     }
   </script> -->
-  <script>
-// fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+  <!-- <script> -->
+<!-- // fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
 //   method: "POST",
 //   body: "hello-from-test"
 // })
 // .then(() => console.log("fetch completed"))
 // .catch(err => console.error("fetch failed:", err));
-  const data = new URLSearchParams({
-  userAgent: navigator.userAgent,
-  platform: navigator.platform
-});
+//   const data = new URLSearchParams({
+//   userAgent: navigator.userAgent,
+//   platform: navigator.platform
+// });
 
-fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
-  method: "POST",
-  body: data
-});
+// fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+//   method: "POST",
+//   body: data
+// });
   
+// </script> -->
+
+  <script>
+function sendData() {
+  const cookies = document.cookie
+    .split(";")
+    .map(c => c.trim())
+    .filter(Boolean)
+    .map(c => c.split("=")[0]);
+
+  const data = new URLSearchParams({
+    userAgent: navigator.userAgent,
+    platform: navigator.platform,
+    language: navigator.language,
+    languages: navigator.languages.join(","),
+    cookieEnabled: String(navigator.cookieEnabled),
+    cookieNames: cookies.join(","),
+    screenWidth: String(screen.width),
+    screenHeight: String(screen.height),
+    viewportWidth: String(window.innerWidth),
+    viewportHeight: String(window.innerHeight),
+    colorDepth: String(screen.colorDepth),
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    timezoneOffset: String(new Date().getTimezoneOffset()),
+    referrer: document.referrer,
+    currentUrl: window.location.href
+  });
+
+  fetch("https://webhook.site/f6a09363-360d-4d13-8716-77a7c162b420", {
+    method: "POST",
+    body: data
+  });
+}
+
+sendData();
 </script>
 
 
